@@ -1,0 +1,16 @@
+# Core
+toga>=0.4.8,<0.5        # Toga cross-platform native GUI  [oai_citation:8‡Toga](https://toga.beeware.org/?utm_source=chatgpt.com)
+briefcase>=0.3.20,<0.4  # packaging to native apps  [oai_citation:9‡PyPI](https://pypi.org/org/beeware/?utm_source=chatgpt.com)
+
+# Serialization / validation
+PyYAML>=6.0.1,<7
+jsonschema>=4.22,<5
+
+# CLI (optional but useful in Iteration 3)
+typer>=0.12,<1
+rich>=13.7,<14
+
+# Dev / quality
+pytest>=9.0,<10         #  [oai_citation:10‡GitHub](https://github.com/pytest-dev/pytest/releases?utm_source=chatgpt.com)
+ruff>=0.14,<0.16         #  [oai_citation:11‡GitHub](https://github.com/astral-sh/ruff/releases?utm_source=chatgpt.com)
+mypy>=1.10,<2

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://finalstatepress.org/schemas/outline.schema.json",
+  "title": "Outline Document",
+  "description": "Canonical schema for an outline document used by Outline Tool.",
+  "type": "object",
+  "required": ["doc_id", "title", "root"],
+  "additionalProperties": false,
+
+  "properties": {
+    "doc_id": {
+      "type": "string",
+      "description": "Stable unique identifier for the document."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable document title.",
+      "minLength": 1
+    },
+    "root": {
+      "$ref": "#/$defs/node"
+    },
+
+    "created_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp when the document was created."
+    },
+    "updated_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp when the document was last updated."
+    },
+    "meta": {
+      "type": "object",
+      "description": "Optional metadata for pipelines, publishing, or extensions.",
+      "additionalProperties": true
+    }
+  },
+
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["node_id", "title", "collapsed", "children"],
+      "additionalProperties": false,
+
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "description": "Stable unique identifier for the node."
+        },
+        "title": {
+          "type": "string",
+          "description": "Node title.",
+          "minLength": 1
+        },
+        "collapsed": {
+          "type": "boolean",
+          "description": "Whether the node is collapsed in the UI."
+        },
+        "children": {
+          "type": "array",
+          "description": "Child nodes in document order.",
+          "items": {
+            "$ref": "#/$defs/node"
+          }
+        }
+      }
+    }
+  }
+}

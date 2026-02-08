@@ -1,0 +1,58 @@
+flowchart LR
+    %% =========================
+    %% Presentation Layer
+    %% =========================
+    subgraph Presentation["Presentation Layer"]
+        GUI[Toga GUI<br/>Views + Controllers]
+        CLI[CLI Interface]
+    end
+
+    %% =========================
+    %% Application Layer
+    %% =========================
+    subgraph Application["Application Layer"]
+        UC[Use Cases<br/>(Create, Load, Save,<br/>Add, Rename, Delete)]
+        DTO[DTOs<br/>(Requests / Responses)]
+    end
+
+    %% =========================
+    %% Domain Layer
+    %% =========================
+    subgraph Domain["Domain Layer"]
+        DOC[OutlineDocument]
+        NODE[OutlineNode]
+    end
+
+    %% =========================
+    %% Infrastructure Layer
+    %% =========================
+    subgraph Infrastructure["Infrastructure Layer"]
+        REPO[Repository<br/>(InMemory / Filesystem)]
+        SER[Serializers<br/>(JSON, YAML, MD,<br/>OPML, TXT)]
+        SCHEMA[JSON Schema<br/>(Canonical Payload)]
+    end
+
+    %% =========================
+    %% Connections
+    %% =========================
+
+    GUI -->|User Actions| UC
+    CLI -->|Commands| UC
+
+    UC -->|Requests| DTO
+    DTO -->|Responses| UC
+
+    UC -->|Operate on| DOC
+    DOC --> NODE
+
+    UC -->|Persist / Load| REPO
+    REPO -->|Payload| SCHEMA
+
+    SER -->|dumps / loads| SCHEMA
+    UC -->|Export / Import| SER
+
+    %% =========================
+    %% Notes
+    %% =========================
+    classDef boundary stroke-dasharray: 5 5
+    class SER,REPO boundary

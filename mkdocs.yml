@@ -1,0 +1,14 @@
+site_name: Outline Tool
+theme:
+  name: material
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - User guide: user-guide.md
+  - Serialzers: serializers.md
+  - Architecture: architecture.md
+  - Iterations: iterations.md
